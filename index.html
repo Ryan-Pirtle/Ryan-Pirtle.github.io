@@ -32,14 +32,27 @@
         {{/each}}
     </table>
 </script>
+<!-- meal_items = []    // new array to hold filtered data
 
+for(i=0, i < data.length; i++) {
+    if(data[i].meal == selected_meal) {
+        meal_items.push(data[i].meal);
+    }
+} -->
 <script>
     async function getData(StudentMajor){
         var response = await fetch("cit5students.json");
         if (response.ok){
             var info = await response.json();
 
-            studentData = info.filter((student) => student.major = StudentMajor);
+            // studentData = info.filter((student) => student.major = StudentMajor);
+            studentData = []
+
+            for(i=0; i<info.length; i++){
+                if(info[i].major == StudentMajor){
+                    studentData.push(info[i])
+                }
+            }
 
             var tempText = document.querySelector("#DisplayMajorTemplate").innerHTML;
             var compileTemp = Handlebars.compile(tempText);
