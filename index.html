@@ -6,7 +6,7 @@
         <!-- This get this Handlebars library in order to create templates -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 
-        <!-- Bootstrap for formating -->
+        <!-- Bootstrap for formating but since I didn't use it I just commented it out-->
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
@@ -17,13 +17,16 @@
 <body>
 <h1>Select a Major</h1>
 
+<!-- When either of these buttons are clicked they call the getData() function and pass in the CIT and BUS arguments respectively both of which are keys -->
 <input type="button" value="CIT Majors" onclick="getData('CIT')">
 <input type="button" value="Business Majors" onclick="getData('BUS')">
 
 <h3>We filter our dataset by major</h3>
+<!-- This is where the data will be displayed -->
 <div id="result"></div>   
 
-
+<!-- The type tells the program that this will be a template -->
+<!-- The id is so the template can be accessed -->
 <script type="text/x-handlebars-template" id="DisplayMajorTemplate">
     <table>
         <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
@@ -32,31 +35,34 @@
         {{/each}}
     </table>
 </script>
-<!-- meal_items = []    // new array to hold filtered data
 
-for(i=0, i < data.length; i++) {
-    if(data[i].meal == selected_meal) {
-        meal_items.push(data[i].meal);
-    }
-} -->
 <script>
-    async function getData(StudentMajor){
+    // The async function makes a Ajax request it is asynchronous so that the user can work while the data is being called and the whole webpage doesn't have to reload for it
+    // The studentMajor parameter contains the argument from whichever button was clicked
+    async function getData(studentMajor){
+        // this gets the data
         var response = await fetch("cit5students.json");
+        // if the data retreival was successful then the if will execute if it wasn't else will
         if (response.ok){
-            var info = await response.json();
-
-            // studentData = info.filter((student) => student.major = StudentMajor);
+            // This destringifies the data and assigns it to info
+            var info = await response.json();           
+           
+            // array for data to be pushed to
             studentData = []
-
+            // the for loop goes for as long as the data retrevied from the fetch request is 
             for(i=0; i<info.length; i++){
-                if(info[i].major == StudentMajor){
+                // if the value corresponding to the major key equals the arguments from whichever button was pressed then that element of the array is pushed to the studentData list
+                if(info[i].major == studentMajor){
                     studentData.push(info[i])
                 }
             }
-
+            // This get the template
             var tempText = document.querySelector("#DisplayMajorTemplate").innerHTML;
+            // This uses the Handlebars library to compile the template into HTML
             var compileTemp = Handlebars.compile(tempText);
+            // This assigns the values to the template telling it what array of key value pairs it is using to fill in the blanks
             compliledHTML = compileTemp({rows:studentData});
+            // This displays the assigned values in the #results div
             document.querySelector("#result").innerHTML = compliledHTML;
 
         }else{
