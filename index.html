@@ -3,15 +3,56 @@
     <head>
         <meta charset="UTF-800">
         <title>students by major</title>
+        <!-- This get this Handlebars library in order to create templates -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+        <!-- Bootstrap for formating -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+  
+        
     </head>
 
 <body>
 <h1>Select a Major</h1>
 
-<input type="button" value="CIT Majors" id="CIT">
-<input type="button" value="Business Majors" id="Business">
+<input type="button" value="CIT Majors" onclick="getData('CIT')">
+<input type="button" value="Business Majors" onclick="getData('BUS')">
 
 <h3>We filter our dataset by major</h3>
+<div id="result"></div>   
+
+
+<script type="text/x-handlebars-template" id="DisplayMajorTemplate">
+    <table>
+        <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
+        {{#each rows}}
+            <tr><td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td></tr>
+        {{/each}}
+    </table>
+</script>
+
+<script>
+    async function getData(StudentMajor){
+        var response = await fetch("cit5students.json");
+        if (response.ok){
+            var info = await response.json();
+
+            studentData = info.filter((student) => student.major = StudentMajor);
+
+            var tempText = querySelector("#DisplayMajorTemplate").innerHTML;
+            var compileTemp = Handlebars.compile(tempText);
+            compliledHTML = compileTemp({rows:studentData});
+            document.querySelector("#result").innerHTML = compliledHTML;
+
+        }else{
+            document.querySelector("#result").innerHTML = "Data not found";
+        }
+
+
+    }
+</script>
 
 </body>
 </html>
