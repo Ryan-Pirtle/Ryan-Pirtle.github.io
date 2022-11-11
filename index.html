@@ -41,7 +41,7 @@
 
             studentData = info.filter((student) => student.major = StudentMajor);
 
-            var tempText = querySelector("#DisplayMajorTemplate").innerHTML;
+            var tempText = document.querySelector("#DisplayMajorTemplate").innerHTML;
             var compileTemp = Handlebars.compile(tempText);
             compliledHTML = compileTemp({rows:studentData});
             document.querySelector("#result").innerHTML = compliledHTML;
