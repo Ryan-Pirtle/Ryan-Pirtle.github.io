@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <!-- change 8 -->
 <head>
     <meta charset="UTF-800">
     <title>Tickets</title>
@@ -50,7 +51,6 @@
         },
         created(){  
             this.getJson()
-            this.getOver()
         },
         methods: {
             async getJson(){
@@ -58,16 +58,16 @@
                 this.tickets1 = await response.json()    
                 },
                 getOver(){
-                this.filtered = for(i=0; i < this.tickets1.length; i++){ 
-                        if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
-                                this.filtered.push(this.tickets1[i])
-                        } 
-                },
-            },
+                    console.log(this.tickets1[1], "Test")
+                    this.filtered = for(i=0; i < this.tickets1.length; i++){ 
+                            if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
+                                    this.filtered.push(this.tickets1[i])
+                            } 
+                    },
+                 },
             
             }    
     })
-    // change 7
     app1.mount("#ticketTable")
 </script>
 </body>
