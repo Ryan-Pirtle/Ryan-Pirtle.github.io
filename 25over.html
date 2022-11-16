@@ -56,15 +56,16 @@
                 const response = await fetch('tickets1.json')
                 this.tickets1 = await response.json()
                 for(i=0; i < tickets1.length; i++){
+                    console.log(tickets1[i].{{actual_speed}})
                    if (tickets1[i].{{actual_speed}} - tickets1[i].{{posted_speed}} > 25){
                         filtered.push(tickets1[i])
                    }     
-                }
+                },
             },
             
             }    
     })
-    // change 3 
+    // change 4
     app1.mount("#ticketTable")
 </script>
 </body>
