@@ -41,13 +41,13 @@
 
     </div>
 <script>
-    let app1 = Vue.createApp({
+    let app1 = Vue.createApp({  
         data(){
             return {
                 tickets1: [],
             }
         },
-        create(){
+        created(){  
             this.getJson()
         },
         methods: {
@@ -58,7 +58,7 @@
             
             }    
     })
-
+    // change
     app1.mount("#ticketTable")
 </script>
 </body>
