@@ -50,22 +50,25 @@
         },
         created(){  
             this.getJson()
+            this.getOver()
         },
         methods: {
             async getJson(){
                 const response = await fetch('tickets1.json')
-                this.tickets1 = await response.json()
-                for(i=0; i < tickets1.length; i++){
-                    console.log(tickets1[i].{{actual_speed}})
-                   if (tickets1[i].{{actual_speed}} - tickets1[i].{{posted_speed}} > 25){
-                        filtered.push(tickets1[i])
-                   }     
+                this.tickets1 = await response.json()    
+                },
+                getOver(){
+
+                this.filtered = for(i=0; i < tickets1.length; i++){ 
+                        if (tickets1[i].actual_speed - tickets1[i].posted_speed > 25){
+                                filtered.push(tickets1[i])
+                        } 
                 },
             },
             
             }    
     })
-    // change 4
+    // change 5
     app1.mount("#ticketTable")
 </script>
 </body>
