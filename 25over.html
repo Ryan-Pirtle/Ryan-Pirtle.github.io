@@ -59,10 +59,10 @@
                 },
                 getOver(){
                     console.log(this.tickets1[1], "Test")
-                    this.filtered = for(i=0; i < this.tickets1.length; i++){ 
-                            if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
-                                    this.filtered.push(this.tickets1[i])
-                            } 
+                    for(i=0; i < this.tickets1.length; i++){ 
+                        if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
+                                this.filtered.push(this.tickets1[i])
+                        } 
                     },
                  },
             
