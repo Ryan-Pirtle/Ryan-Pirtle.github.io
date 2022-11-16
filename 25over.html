@@ -33,6 +33,7 @@
 
     <div id="ticketTable">
     <h1>Tickets July 4, 2014, Minneapolis/St. Paul</h1>
+    <input type="button" value="display" v-on:click="getOver()">
     <table class="table table-striped table-bordered">
         <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
         <tr v-for = "ticket in filtered"> 
