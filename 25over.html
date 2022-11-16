@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-800">
+    <title>Tickets</title>
+
+    <!-- vue.js -->
+    <script src="https://unpkg.com/vue@next"></script>  
+
+    <!-- Bootstrap for formatting-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+             <a class="navbar-brand" href="#">Our Website</a>
+        </div>
+        <div>
+             <ul class="nav navbar-nav">
+                <li><a href="index.html">All Tickets</a></li>
+                <li class="active"><a href="25over.html">25mph or more over</a></li>
+             </ul>
+       </div>
+       </nav>
+    </div>
+
+    <div id="ticketTable">
+    <h1>Tickets July 4, 2014, Minneapolis/St. Paul</h1>
+    <table class="table table-striped table-bordered">
+        <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
+        <tr v-for = "ticket in filtered"> 
+            <td>{{ticket.tid}}</td> <td>{{ticket.stop_time}}</td> <td>{{ticket.posted_speed}}</td> <td>{{ticket.actual_speed - ticket.posted_speed}}</td> <td>{{ticket.violator_sex}}</td>
+        </tr>
+    </table>
+
+    </div>
+<script>
+    let app1 = Vue.createApp({  
+        data(){
+            return {
+                tickets1: [],
+                filtered: []
+            }
+        },
+        created(){  
+            this.getJson()
+        },
+        methods: {
+            async getJson(){
+                const response = await fetch('tickets1.json')
+                this.tickets1 = await response.json()
+                for(i=0; i < tickets1.length; i++){
+                   if (tickets1[i].{{actual_speed - posted_speed}} > 25){
+                        filtered.push(tickets1[i])
+                   }     
+                }
+            },
+            
+            }    
+    })
+    // change 2 
+    app1.mount("#ticketTable")
+</script>
+</body>
+</html>
