@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <!-- change 17 -->
+    <!-- change 17 test -->
 <head>
     <meta charset="UTF-800">
     <title>Tickets</title>
@@ -36,8 +36,12 @@
     <input type="button" value="test" v-on:click="getOver()">
     <table class="table table-striped table-bordered">
         <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
-        <tr v-for = "ticket in filtered"> 
-            <td>{{ticket.tid}}</td> <td>{{ticket.stop_time}}</td> <td>{{ticket.posted_speed}}</td> <td>{{ticket.actual_speed - ticket.posted_speed}}</td> <td>{{ticket.violator_sex}}</td>
+        <tr v-for = "ticket in tickets1"> 
+            <td>{{ticket.tid}}</td> 
+            <td>{{ticket.stop_time}}</td> 
+            <td>{{ticket.posted_speed}}</td> 
+            <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+            <td>{{ticket.violator_sex}}</td>
         </tr>
     </table>
 
