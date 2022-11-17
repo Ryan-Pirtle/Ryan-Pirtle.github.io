@@ -56,7 +56,7 @@
         },
         created(){  
             this.getJson()
-            this.getOver()
+            // this.getOver()
         },
         methods: {
             async getJson(){
@@ -64,7 +64,7 @@
                 this.tickets1 = await response.json()    
                 },
              getOver(){
-                console.log(this.tickets1[i], "Test")
+                // console.log(this.tickets1[i], "Test")
                 this.filtered = this.tickets1.filter(function(ticket){
                     if((ticket.actual_speed - ticket.posted_speed) > 25){
                         return ticket
