@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <!-- change 16 -->
+    <!-- change 17 -->
 <head>
     <meta charset="UTF-800">
     <title>Tickets</title>
@@ -61,6 +61,11 @@
                 },
              getOver(){
                 console.log(this.tickets1[i], "Test")
+                this.filtered = this.tickets1.filter(function(ticket){
+                    if((ticket.actual_speed - ticket.posted_speed) > 25){
+                        return ticket
+                    }
+                });
                 // for(i=0; i < this.tickets1.length; i++){ 
                 //     if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
                 //             this.filtered.push(this.tickets1[i])
