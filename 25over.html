@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <!-- change 18 -->
+    <!-- change 19 -->
 <head>
     <meta charset="UTF-800">
     <title>Tickets</title>
@@ -47,7 +47,7 @@
 
     </div>
 <script>
-    let app1 = Vue.createApp({  
+    let app = Vue.createApp({  
         data(){
             return {
                 tickets1: [],
@@ -64,12 +64,13 @@
                 this.tickets1 = await response.json()    
                 },
              getOver(){
-                console.log(this.tickets1[i], "Test")
+                console.log(this.tickets1[0], "Test")
                 this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted >= 25) 
+                console.log(this.filtered, "Test2")
                 } 
             }       
     })
-    app1.mount("#ticketTable")
+    app.mount("#ticketTable")
 </script>
 </body>
 </html>
