@@ -51,17 +51,12 @@
         data(){
             return {
                 tickets1: [],
-                filtered: []
+                filtered: tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
             }
         },
         created(){  
-            this.getJson();
-            // this.getOver()
-            getOver(){
-                console.log(this.tickets1[0], "Test")
-                this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
-                console.log(this.filtered[0], "Test2")
-                }; 
+            this.getJson()
+            this.getOver()
         },
         methods: {
             async getJson(){
