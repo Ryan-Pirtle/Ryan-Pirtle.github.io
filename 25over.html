@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <!-- change 17 test -->
+    <!-- change 18 -->
 <head>
     <meta charset="UTF-800">
     <title>Tickets</title>
@@ -36,7 +36,7 @@
     <input type="button" value="test" v-on:click="getOver()">
     <table class="table table-striped table-bordered">
         <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
-        <tr v-for = "ticket in tickets1"> 
+        <tr v-for = "ticket in filtered"> 
             <td>{{ticket.tid}}</td> 
             <td>{{ticket.stop_time}}</td> 
             <td>{{ticket.posted_speed}}</td> 
@@ -56,7 +56,7 @@
         },
         created(){  
             this.getJson()
-            // this.getOver()
+            this.getOver()
         },
         methods: {
             async getJson(){
@@ -64,19 +64,8 @@
                 this.tickets1 = await response.json()    
                 },
              getOver(){
-                // console.log(this.tickets1[i], "Test")
-                this.filtered = this.tickets1.filter(function(ticket){
-                    if((ticket.actual_speed - ticket.posted_speed) > 25){
-                        return ticket
-                    }
-                });
-                // for(i=0; i < this.tickets1.length; i++){ 
-                //     if (this.tickets1[i].actual_speed - this.tickets1[i].posted_speed > 25){
-                //             this.filtered.push(this.tickets1[i])
-                //         } 
-
-                //     }
-                
+                console.log(this.tickets1[i], "Test")
+                this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted >= 25) 
                 } 
             }       
     })
