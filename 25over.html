@@ -30,13 +30,12 @@
         </div>
         </nav>
         </div>
-
+        <input type="button" value="test" v-on:click="getOver()">
         <div id="ticketTable">
         <h1>Tickets July 4, 2014, Minneapolis/St. Paul</h1>
-        <input type="button" value="test" v-on:click="getOver()">
         <table class="table table-striped table-bordered">
             <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
-            <tr v-for = "ticket in filtered"> 
+            <tr v-for = "ticket in filterTickets"> 
                 <td>{{ticket.tid}}</td> 
                 <td>{{ticket.stop_time}}</td> 
                 <td>{{ticket.posted_speed}}</td> 
@@ -44,14 +43,14 @@
                 <td>{{ticket.violator_sex}}</td>
             </tr>
         </table>
-
         </div>
+        
     <script>
         let app = Vue.createApp({  
             data(){
                 return {
                     tickets1: [],
-                    filtered: [],
+                    filterTickets: [],
                 }
             },
             created(){  
@@ -64,8 +63,8 @@
                     },
                 getOver(){
                     console.log(this.tickets1[0], "Test")
-                    this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted >= 26) 
-                    console.log(this.filtered[0], "Test2")
+                    this.filterTickets = this.tickets1.filter((ticket) => (ticket.actual_speed - ticket._posted) >= 26) 
+                    console.log(this.filterTickets[0], "Test2")
                     } 
                    
                 } 
