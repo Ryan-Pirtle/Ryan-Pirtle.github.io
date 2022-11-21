@@ -63,14 +63,15 @@
                 const response = await fetch('tickets1.json')
                 this.tickets1 = await response.json()    
                 },
-              async getOver(){
+              getOver(){
                 console.log(this.tickets1[0], "Test")
-                this.filtered = await this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
+                this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
                 console.log(this.filtered[0], "Test2")
                 } 
             }       
     })
     app.mount("#ticketTable")
+    console.log(this.filtered[0], "Test3")
 </script>
 </body>
 </html>
