@@ -56,7 +56,7 @@
             },
             created(){  
                 this.getJson()
-                // this.getOver()
+                this.getOver()
                 
             },
             methods: {
@@ -65,11 +65,11 @@
                     this.tickets1 = await response.json()   
                     this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25)  
                     },
-                // getOver(){
-                //     console.log(this.tickets1[0], "Test")
-                //     this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
-                //     console.log(this.filtered[0], "Test2")
-                //     } 
+                getOver(){
+                    console.log(this.tickets1[0], "Test")
+                    this.filtered = this.tickets1.filter((ticket) => ticket.actual_speed - ticket._posted > 25) 
+                    console.log(this.filtered[0], "Test2")
+                    } 
                    
                 } 
                   
