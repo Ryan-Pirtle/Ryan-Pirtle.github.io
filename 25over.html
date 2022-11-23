@@ -1,6 +1,5 @@
     <!DOCTYPE html>
     <html>
-        <!-- change 19 -->
     <head>
         <meta charset="UTF-800">
         <title>Tickets</title>
@@ -17,6 +16,7 @@
     </head>
 
     <body>
+        <!-- this does the same as the navbar in index.html except the second list element has the class active instead -->
         <div class="container">
             <nav class="navbar navbar-inverse">
             <div class="navbar-header">
@@ -30,9 +30,10 @@
         </div>
         </nav>
         </div>
+        <!-- The div that the vue app is mounted to -->
         <div id="ticketTable">
         <h1>Tickets July 4, 2014, Minneapolis/St. Paul, 25mph or more over the limit</h1>
-
+            <!-- This creates a table that gets the data from filterTickets loops throughs it and displays it -->
         <table class="table table-striped table-bordered">
             <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
             <tr v-for = "ticket in filterTickets"> 
@@ -49,6 +50,7 @@
         let app = Vue.createApp({  
             data(){
                 return {
+                    // The json data is destringified and assigned to tickets1 then filtered and assigned to filterTickets
                     tickets1: [],
                     filterTickets: [],
                 }
@@ -60,13 +62,13 @@
             methods: {
                 async getJson(){
                     const response = await fetch('tickets1.json')
-                    this.tickets1 = await response.json()   
+                    this.tickets1 = await response.json()  
+                    // this calls the getOver() method in order to filter tickets1
                     this.getOver()
                     },
                 getOver(){
-                    console.log(this.tickets1[0], "Test")
+                    // this filters the data by getting tickets1 and using the filter function to loop through every element and determine if the actual_speed - posted_speed is greater than or equal to 25
                     this.filterTickets = this.tickets1.filter((ticket) => (ticket.actual_speed - ticket.posted_speed) >= 25) 
-                    console.log(this.filterTickets[0], "Test2")
                     } 
                    
                 } 
