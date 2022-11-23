@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!-- This is the Nav Bar when the user clicks on one of the lists elements they are taken to another page -->
     <div class="container">
         <nav class="navbar navbar-inverse">
         <div class="navbar-header">
@@ -29,11 +30,14 @@
        </div>
        </nav>
     </div>
-
+    <!-- this is the div where the vue app will be mounted -->
     <div id="ticketTable">
     <h1>Tickets July 4, 2014, Minneapolis/St. Paul</h1>
+    <!-- this is the table with the data and bootstrap to format it -->
     <table class="table table-striped table-bordered">
+        <!-- this creates the head of the table -->
         <tr><th>Ticket Id</th> <th>Time</th> <th>Posted Speed</th> <th>MPH Over</th> <th>Violator Sex</th></tr>
+        <!-- this gets the array in tickets1 and loops through it -->
         <tr v-for = "ticket in tickets1"> 
             <td>{{ticket.tid}}</td> <td>{{ticket.stop_time}}</td> <td>{{ticket.posted_speed}}</td> <td>{{ticket.actual_speed - ticket.posted_speed}}</td> <td>{{ticket.violator_sex}}</td>
         </tr>
@@ -41,16 +45,21 @@
 
     </div>
 <script>
+    // this assigns a vue created app to the variable app1 
     let app1 = Vue.createApp({  
         data(){
+            // This gives the tickets1 array to the rest of the programming
             return {
                 tickets1: [],
             }
         },
+        // When the program starts this will be called and execute the getJson() function in the methods section
         created(){  
             this.getJson()
         },
+        
         methods: {
+            // the async allow the await to be used which means the program will wait till the json file is fetched and destringified
             async getJson(){
                 const response = await fetch('tickets1.json')
                 this.tickets1 = await response.json()
@@ -58,7 +67,7 @@
             
             }    
     })
-    // change
+    // mounts app1 to the div with the id ticketTable
     app1.mount("#ticketTable")
 </script>
 </body>
